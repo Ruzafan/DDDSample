@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Respositories\IUserRepository.cs" />
+    <Compile Include="Infrastructure\Respositories\UserMongoRepository.cs" />
     <Compile Include="Support\Constants.cs" />
     <Compile Include="Support\Extensions.cs" />
     <Compile Include="Domain\Entities\User.cs" />
