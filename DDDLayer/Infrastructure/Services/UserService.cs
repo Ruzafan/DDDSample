@@ -11,16 +11,21 @@ namespace DDDLayer.Infrastructure.Services
 {
     public class UserService
     {
+        private IUserRepository userRepository = null;
+        
+        public UserService()
+        {
+            userRepository = Resolver.GetUserRepository(Constants.USER_COLLECTION);
+        }
+        
         public User Get(int id)
         {
-            IUserRepository userRepository = Resolver.GetUserRepository(Constants.USER_COLLECTION);
             return userRepository.Get(id);
             
         }
 
         public User Get(string email, string password)
         {
-            IUserRepository userRepository = Resolver.GetUserRepository(Constants.USER_COLLECTION);
             Dictionary<string, object> filters = new Dictionary<string, object>();
             filters.Add("email", email);
             filters.Add("password", password);
