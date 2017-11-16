@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DDDLayer.Support;
+using DDDLayer.Domain;
 
 namespace DDDLayer.Infrastructure.Services
 {
@@ -12,11 +13,17 @@ namespace DDDLayer.Infrastructure.Services
     {
         public User Get(int id)
         {
+            User user = (User)CacheManager.GetFromCache(string.Format("User-{0}", id));
+            if (user.IsDefined())
+            {
+                return user;
+            }
+
             IDatabase db = Resolver.GetDatabaseObject(Constants.USER_COLLECTION);
-            User user = db.Get<User>(id);
+            user = db.Get<User>(id);
             if(user.IsDefined())
             {
-                if(user.email.IsDefined() && user.status == Constants.STATUS_ACTIVE)
+                if(user.Email.IsDefined() && user.Status == Constants.STATUS_ACTIVE)
                 {
                     return user;
                 }
@@ -27,19 +34,24 @@ namespace DDDLayer.Infrastructure.Services
         public User Get(string email, string password)
         {
             IDatabase db = Resolver.GetDatabaseObject(Constants.USER_COLLECTION);
-            Dictionary<string, object> filters = new Dictionary<string, object>();
-            filters.Add("email", email);
-            filters.Add("password", password);
+            Dictionary<string, object> filters = new Dictionary<string, object>()
+            {
+                { "email", email },
+                { "password", password }
+            };
             User user = db.GetByFilter<User>(filters);
             if (user.IsDefined())
             {
-                if (user.email.IsDefined() && user.status == Constants.STATUS_ACTIVE)
+                if (user.Email.IsDefined() && user.Status == Constants.STATUS_ACTIVE)
                 {
+                    CacheManager.SaveOnCache(string.Format("User-{0}", user.Id), user);
                     return user;
                 }
             }
             return null;
             
         }
+
+       
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using DDDLayer.Support;
+using DDDLayer.Domain;
 
 namespace DDDLayer.Infrastructure.Services
 {
@@ -21,6 +22,7 @@ namespace DDDLayer.Infrastructure.Services
         {
             this.collectionName = collectionName;
         }
+
         private IMongoCollection<T> getCollection<T>()
         {
             _client = new MongoClient();
@@ -57,6 +59,21 @@ namespace DDDLayer.Infrastructure.Services
                 }
             }
             return default(T);
+        }
+
+        public List<T> GetList<T>(List<int> ids)
+        {
+            IMongoCollection<T> collection = getCollection<T>();
+            if (collection.IsDefined())
+            {
+                var filter = Builders<T>.Filter.In("Id", ids);
+                var obj = collection.Find<T>(filter);
+                if (obj.IsDefined() && obj.Any())
+                {
+                    return obj.ToList();
+                }
+            }
+            return new List<T>();
         }
     }
 }

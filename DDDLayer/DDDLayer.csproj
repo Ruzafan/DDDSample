@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
@@ -57,19 +58,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\UseCase\CartUseCase.cs" />
+    <Compile Include="Application\UseCase\LoginUseCase.cs" />
+    <Compile Include="Domain\Entities\Discount.cs" />
+    <Compile Include="Domain\Entities\Product.cs" />
+    <Compile Include="Infrastructure\Services\ProductService.cs" />
+    <Compile Include="Support\CacheManager.cs" />
     <Compile Include="Support\Constants.cs" />
     <Compile Include="Support\Extensions.cs" />
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\Entities\IDatabaseModel.cs" />
-    <Compile Include="Infrastructure\Services\IDatabase.cs" />
-    <Compile Include="Infrastructure\Services\Mongo.cs" />
+    <Compile Include="Domain\IDatabase.cs" />
+    <Compile Include="Infrastructure\Respositories\MongoRepository.cs" />
     <Compile Include="Infrastructure\Services\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\Resolver.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

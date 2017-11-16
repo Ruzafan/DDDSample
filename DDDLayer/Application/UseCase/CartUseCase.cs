@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDDLayer.Domain.Entities
+namespace DDDLayer.Application.UseCase
 {
-    public interface IDatabaseModel
+    public class CartUseCase
     {
-        string Id { get; set; }
 
-        int Status { get; set; }
-
+        public List<Product>
     }
 }

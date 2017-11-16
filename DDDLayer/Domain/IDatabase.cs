@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDDLayer.Infrastructure.Services
+namespace DDDLayer.Domain
 {
     public interface IDatabase
     {
@@ -12,6 +12,8 @@ namespace DDDLayer.Infrastructure.Services
         T Get<T>(int id);
 
         T GetByFilter<T>(Dictionary<string, object> filters);
+
+        List<T> GetList<T>(List<int> ids);
 
     }
 }

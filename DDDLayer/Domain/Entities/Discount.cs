@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace DDDLayer.Domain.Entities
 {
-    public interface IDatabaseModel
+    public class Discount
     {
-        string Id { get; set; }
+        public int Percent { get; set; }
 
-        int Status { get; set; }
+        public DateTime InitDate { get; set; }
 
+        public DateTime EndDate { get; set; }
     }
 }

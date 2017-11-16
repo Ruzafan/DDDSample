@@ -9,6 +9,7 @@ namespace DDDLayer.Support
     public static class Constants
     {
         public static string USER_COLLECTION = "users";
+        public static string PRODUCT_COLLECTION = "products";
 
         public static int STATUS_PENDING = 1;
 
