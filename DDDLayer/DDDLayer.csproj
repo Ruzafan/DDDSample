@@ -64,6 +64,8 @@
     <Compile Include="Domain\Entities\Product.cs" />
     <Compile Include="Infrastructure\Services\ProductService.cs" />
     <Compile Include="Support\CacheManager.cs" />
+    <Compile Include="Infrastructure\Respositories\IUserRepository.cs" />
+    <Compile Include="Infrastructure\Respositories\UserMongoRepository.cs" />
     <Compile Include="Support\Constants.cs" />
     <Compile Include="Support\Extensions.cs" />
     <Compile Include="Domain\Entities\User.cs" />
@@ -76,6 +78,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="AppConfig.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

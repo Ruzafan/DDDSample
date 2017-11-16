@@ -5,12 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DDDLayer.Support;
+using DDDLayer.Infrastructure.Respositories;
 using DDDLayer.Domain;
 
 namespace DDDLayer.Infrastructure.Services
 {
     public class UserService
     {
+        private IUserRepository userRepository = null;
+        
+        public UserService()
+        {
+            userRepository = Resolver.GetUserRepository(Constants.USER_COLLECTION);
+        }
+        
         public User Get(int id)
         {
             User user = (User)CacheManager.GetFromCache(string.Format("User-{0}", id));
